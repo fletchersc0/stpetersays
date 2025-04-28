@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yes or No</title>
+  <style>
+    html,body{
+      height:100%;
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Arial,Helvetica,sans-serif;
+      transition:background 0.3s ease,color 0.3s ease;
+    }
+    h1{
+      font-size:8rem;
+      margin:0;
+      letter-spacing:.3rem;
+      user-select:none;
+    }
+    /* light & dark themes */
+    .yes-theme{background:#e8f5e9;color:#1b5e20;}
+    .no-theme{background:#263238;color:#ef5350;}
+  </style>
+</head>
+<body>
+  <h1 id="word"></h1>
+
+  <script>
+    const yes = Math.random() < 0.5;
+    const body = document.body;
+    const heading = document.getElementById('word');
+
+    if(yes){
+      body.classList.add('yes-theme');
+      heading.textContent = 'YES';
+    }else{
+      body.classList.add('no-theme');
+      heading.textContent = 'NO';
+    }
+  </script>
+</body>
+</html>
