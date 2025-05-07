@@ -12,7 +12,6 @@
       justify-content:center;
       font-family:Arial,Helvetica,sans-serif;
       transition:background 0.3s ease,color 0.3s ease;
-      /* this makes the background image fill the screen */
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
@@ -22,16 +21,16 @@
       margin:0;
       letter-spacing:.3rem;
       user-select:none;
-      text-shadow:0 2px 6px rgba(0,0,0,.5); /* keeps word readable */
+      text-shadow:0 2px 6px rgba(0,0,0,.5);
     }
-    /* themes now use pictures instead of solid colours */
+    /* themes now point to the PNG files */
     .yes-theme{
-      background-image:url('yes.jpg');   /* put your YES image here */
-      color:#ffffff;                     /* adjust if needed */
+      background-image:url('yes.png');
+      color:#ffffff;
     }
     .no-theme{
-      background-image:url('no.jpg');    /* put your NO image here */
-      color:#ffffff;                     /* adjust if needed */
+      background-image:url('no.png');
+      color:#ffffff;
     }
   </style>
 </head>
@@ -40,7 +39,7 @@
   <h1 id="word"></h1>
 
   <script>
-    const yes = Math.random() < 0.5;        // 50-50 chance
+    const yes = Math.random() < 0.5;    // 50-50 coin-flip
     const body = document.body;
     const heading = document.getElementById('word');
 
@@ -54,4 +53,3 @@
   </script>
 </body>
 </html>
-
