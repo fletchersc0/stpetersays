@@ -23,7 +23,6 @@
       user-select:none;
       text-shadow:0 2px 6px rgba(0,0,0,.5);
     }
-    /* themes now point to the PNG files */
     .yes-theme{
       background-image:url('yes.png');
       color:#ffffff;
@@ -39,11 +38,39 @@
   <h1 id="word"></h1>
 
   <script>
-    const yes = Math.random() < 0.5;    // 50-50 coin-flip
+    // Cookie helpers
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+    }
+
     const body = document.body;
     const heading = document.getElementById('word');
+    let answer = getCookie('stpetersays_answer');
 
-    if (yes){
+    if (!answer) {
+      // If no cookie, generate and store
+      answer = Math.random() < 0.5 ? 'YES' : 'NO';
+      setCookie('stpetersays_answer', answer, 365); // last for 1 year
+    }
+
+    if (answer === 'YES'){
       body.classList.add('yes-theme');
       heading.textContent = 'YES';
     } else {
